@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-<title>YourHome </title>
+<title>YouRoom </title>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -60,11 +60,45 @@
   left: 0;
   right: 0;
   top: 10%;
-  font-size: 2.9vmax
+  font-size: 2.9vmax;
 }
 </style>
 </head>
-
+<?php
+	require 'cstd.php';
+	require 'core.php';
+	if(isset($_POST['username'])&&isset($_POST['password'])){
+		$username = $_POST['username'];
+		$password = md5($_POST['password']);
+		if(!empty($username)&&!empty($password)){
+			$query ="SELECT `name`,`id` FROM `users` WHERE `phone` = '91".mysqli_real_escape_string($connection,$username)."' AND `password` = '".mysqli_real_escape_string($connection,$password)."' OR `email` = '".mysqli_real_escape_string($connection,$username)."' AND `password` = '".mysqli_real_escape_string($connection,$password)."'";
+			if($query_run = mysqli_query($connection,$query)){
+			if(mysqli_num_rows($query_run)==1){
+				while($user = mysqli_fetch_assoc($query_run)){
+				$user_id = $user['id'];
+                if($user_id){
+                    if(!empty($_POST['remember'])){
+                        setcookie("username",$_POST['username'],time() + (86400*30),"/");
+                        setcookie("password",$_POST['password'],time() + (86400*30),"/");
+                        setcookie("remember",$_POST['remember'],time() + (86400*30),"/");
+                    }else{
+                        setcookie("username");
+                        setcookie("password");
+                        setcookie("remember");
+                    }
+                }
+				$_SESSION['user_id'] = $user_id;
+				}
+				header('Location:landlord.php');
+			}
+		
+			}else{
+				$value = "Incorrect Email/Phone or Password";
+			}
+			
+		}
+	}
+?>
 <body>
 
 
@@ -72,7 +106,7 @@
 
 <!-- Header Starts -->
 <div class="header">
-<a href="index.php"><img src="youhomelogo.png" alt="Realestate"></a>
+<a href="index.php"><img src="logo.png" alt="Realestate"></a>
 </div>
 <!-- #Header Starts -->
 </div>
@@ -88,11 +122,11 @@
   
               <div class="bg-img bg-img-1"></div>
 			  <div class="img-title">
-				<h4 class="xXx">YourRoom. An easy platform to find suitable rooms.</h4>
+				<h4 class="xXx">YouRoom.<br/> An easy platform to find suitable rooms.</h4>
 			  </div>
 				<div class="img-overlay" class="col-lg-3 col-sm-3">
 				  <button type="button" class="btn btn-danger" onclick="window.location.href='buy.php'">BUY</button>
-				  <button type="button" class="btn btn-danger"onclick="window.location.href='sell.php'">SELL</button>
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loginpop">SELL</button>
 				</div>
 
             </div>
@@ -102,11 +136,11 @@
             <div class="sl-slide-inner">
               <div class="bg-img bg-img-2"></div>
 				<div class="img-title">
-				<h4 class="xXx">YourRoom. An easy platform to find suitable rooms.</h4>
+				<h4 class="xXx">YouRoom.<br/> An easy platform to find suitable rooms.</h4>
 			  </div>
 				<div class="img-overlay" class="col-lg-3 col-sm-3">
 				  <button type="button" class="btn btn-danger" onclick="window.location.href='buy.php'">BUY</button>
-				  <button type="button" class="btn btn-danger" onclick="window.location.href='sell.php'">SELL</button>
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loginpop">SELL</button>
 				</div>
 
             </div>
@@ -116,11 +150,11 @@
             <div class="sl-slide-inner">
               <div class="bg-img bg-img-3"></div>
 				<div class="img-title">
-				<h4 class="xXx">YourRoom. An easy platform to find suitable rooms.</h4>
+				<h4 class="xXx">YouRoom.<br/> An easy platform to find suitable rooms.</h4>
 			  </div>
 				<div class="img-overlay" class="col-lg-3 col-sm-3">
 				  <button type="button" class="btn btn-danger" onclick="window.location.href='buy.php'">BUY</button>
-				  <button type="button" class="btn btn-danger" onclick="window.location.href='sell.php'">SELL</button>
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loginpop">SELL</button>
 				</div>
 
             </div>
@@ -130,11 +164,11 @@
             <div class="sl-slide-inner">
               <div class="bg-img bg-img-4"></div>
 				<div class="img-title">
-				<h4 class="xXx">YourRoom. An easy platform to find suitable rooms.</h4>
+				<h4 class="xXx">YouRoom.<br/> An easy platform to find suitable rooms.</h4>
 			  </div>
 				<div class="img-overlay" class="col-lg-3 col-sm-3">
 				  <button type="button" class="btn btn-danger" onclick="window.location.href='buy.php'">BUY</button>
-				  <button type="button" class="btn btn-danger" onclick="window.location.href='sell.php'">SELL</button>
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loginpop">SELL</button>
 				</div>
 				
             </div>
@@ -144,11 +178,11 @@
             <div class="sl-slide-inner">
               <div class="bg-img bg-img-5"></div>
 				<div class="img-title">
-				<h4 class="xXx">YourRoom. An easy platform to find suitable rooms.</h4>
+				<h4 class="xXx">YouRoom.<br/> An easy platform to find suitable rooms.</h4>
 			  </div>
 				<div class="img-overlay" class="col-lg-3 col-sm-3">
 				  <button type="button" class="btn btn-danger" onclick="window.location.href='buy.php'">BUY</button>
-				  <button type="button" class="btn btn-danger" onclick="window.location.href='sell.php'">SELL</button>
+				  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loginpop">SELL</button>
 				</div>
 
             </div>
@@ -200,18 +234,17 @@
             
             <div class="col-lg-3 col-sm-3">
                     <h4>Follow us</h4>
-                    <a href="#"><img src="images/facebook.png" alt="facebook"></a>
-                    <a href="#"><img src="images/twitter.png" alt="twitter"></a>
-                    <a href="#"><img src="images/linkedin.png" alt="linkedin"></a>
-                    <a href="#"><img src="images/instagram.png" alt="instagram"></a>
+                    <a href="https://www.facebook.com/YouRoom-110992356987909/"><img src="images/facebook.png" alt="facebook"></a>
+                    <a href="https://twitter.com/YouRoom5?s=08"><img src="images/twitter.png" alt="twitter"></a>
+                    <a href="https://www.instagram.com/youroom5?r=nametag"><img src="images/instagram.png" alt="instagram"></a>
             </div>
 
              <div class="col-lg-3 col-sm-3">
                     <h4>Contact us</h4>
-                    <p><b>YouHome</b><br>
-<span class="glyphicon glyphicon-map-marker"></span> *Address* <br>
-<span class="glyphicon glyphicon-envelope"></span>*mail*<br>
-<span class="glyphicon glyphicon-earphone"></span> *contact*</p>
+                    <p><b>YouRoom</b><br>
+<span class="glyphicon glyphicon-map-marker"></span> Haripur, Selaqui, Dehradun <br>
+<span class="glyphicon glyphicon-envelope"></span> support@youroom1.in<br>
+<span class="glyphicon glyphicon-earphone"></span> 919557904724</p>
             </div>
         </div>
 <p class="copyright">Copyright 2019. All rights reserved.	</p>
@@ -219,5 +252,40 @@
 
 </div></div>
 
+<!-- Modal -->
+<div id="loginpop" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col-sm-6 login">
+        <h4>Login</h4>
+          <form class="" action="<?php echo $current_file;?>" method="POST" role="form">
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputEmail2">Email address/phone</label>
+          <input type="text" class="form-control" id="exampleInputEmail2" name="username" placeholder="Enter email/phone" value="<?php if(isset($_COOKIE['username'])) echo $_COOKIE['username'];?>">
+        </div>
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputPassword2">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword2" name="password" placeholder="Password" value="<?php if(isset($_COOKIE['password'])) echo $_COOKIE['password'];?>">
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="remember" <?php if(isset($_COOKIE['remember'])) echo 'checked'; else echo 'unchecked'?>> Remember me
+          </label>
+        </div>
+        <button type="submit" class="btn btn-success">Sign in</button>
+      </form>          
+        </div>
+        <div class="col-sm-6">
+          <h4>New User Sign Up</h4>
+          <p>Join today and get updated with all the properties deal happening around.</p>
+          <button type="submit" class="btn btn-danger"  onclick="window.location.href='register.php'">Join Now</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.modal -->
 </body>
 </html>

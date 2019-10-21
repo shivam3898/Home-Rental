@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-<title>YourHome</title>
+<title>YouRoom</title>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -27,46 +27,59 @@
     <script type="text/javascript" src="assets/slitslider/js/jquery.slitslider.js"></script>
 <!-- slitslider -->
 
+    <script type="text/javascript" src="reg3.js"></script>
+    <style type="text/css">
+        .ss{
+            margin:0px;padding:0px;
+        }
+    </style>
 </head>
+<?php
+	require 'cstd.php';
+	require 'core.php'; 
+	if(isset($_POST['name'])&&isset($_POST['num'])&&isset($_POST['pass'])&&isset($_POST['cpass'])&&isset($_POST['terms'])){
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$phone = $_POST['num'];
+		$pass = md5($_POST['pass']);
+		$cpass = md5($_POST['cpass']);
+        $terms = 'User has accepted all terms and conditions';
+		if(!empty($name)&&!empty($phone)&&!empty($pass)&&!empty($cpass)){
+			if(empty($email))
+				$email = rand(10000000,99999999);
+			if($pass==$cpass){
+				$email_query = "SELECT `email` FROM `users` WHERE `email` = '".mysqli_real_escape_string($connection,$email)."'";
+				$email_query_run = mysqli_query($connection,$email_query);
+				if(mysqli_num_rows($email_query_run)==1){
+					$email_error = 'Email already exists';
+				}
+				else{
+					$phone_query="SELECT `phone` FROM `users` WHERE `phone` = '".mysqli_real_escape_string($connection,$phone)."'";
+					$phone_query_run = mysqli_query($connection,$phone_query);
+					if(mysqli_num_rows($phone_query_run)==1){
+						$phn_error = 'Phone number exists';
+					}
+					else{
+						$query = "INSERT INTO `users` VALUES('','".mysqli_real_escape_string($connection,$name)."','".mysqli_real_escape_string($connection,$email)."','".mysqli_real_escape_string($connection,$phone)."','".mysqli_real_escape_string($connection,$pass)."','$terms')";
+						if($query_run =mysqli_query($connection,$query)){
+							header('Location:complete.php');
+						}
+						
+					}
+				}
 
+			}else{
+				$pass_error = 'Password don\'t match';
+			}
+		}
+		else{
+			$empty_error='Fill in all fields';
+		}
+	}
+?>
 <body>
 
 
-<!-- Header Starts -->
-<div class="navbar-wrapper">
-
-        <div class="navbar-inverse" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-
-
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-
-            </div>
-
-
-            <!-- Nav Starts -->
-            <div class="navbar-collapse  collapse">
-              <ul class="nav navbar-nav navbar-right">
-               <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="agents.php">Agents</a></li>         
-                <li><a href="blog.php">Blog</a></li>
-                <li><a href="contact.php">Contact</a></li>
-              </ul>
-            </div>
-            <!-- #Nav Ends -->
-
-          </div>
-        </div>
-
-    </div>
-<!-- #Header Starts -->
 
 
 
@@ -76,7 +89,7 @@
 
 <!-- Header Starts -->
 <div class="header">
-<a href="index.php"><img src="youhomelogo.png" alt="Realestate"></a>
+<a href="index.php"><img src="logo.png" alt="Realestate"></a>
 </div>
 <!-- #Header Starts -->
 </div>
@@ -97,15 +110,30 @@
 <div class="row register">
   <div class="col-lg-6 col-lg-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 " >
 
-
-                <input type="text" class="form-control" placeholder="Full Name" name="form_name">
-                <input type="text" class="form-control" placeholder="Enter Email(Optional)" name="form_email">
-				<input type="text" class="form-control" style="width:70%" placeholder="Phone Number(with country code)" name="form_phone"><button type="button" class="btn btn-success" name="verify" style="position:absolute; width:25%; right:3%; top:38%;">Verify</button>
-                <input type="password" class="form-control" placeholder="Password" name="form_phone">
-                <input type="password" class="form-control" placeholder="Confirm Password" name="form_phone">
-      <button type="submit" class="btn btn-success" name="Submit">Register</button>
+			<form action="register.php" method="POST">
+                <input type="text" id="name" class="form-control" placeholder="Full Name" name="name" onblur="nameError();">
+                <div id="namee" class="ss"></div>
+                <input type="email" class="form-control" placeholder="Enter Email(Optional)" name="email">
+				<input type="text" class="form-control" style="width:70%" id="num" placeholder="Phone Number(with country code)" name="num" onkeyup="checkuser();"><button type="button" class="btn btn-success" name="verify" id="verify_button" style="position:absolute; width:25%; right:3%; top:140px;" onclick="sendCode();">Verify</button>
+               
+                <div id="ecode" style="display:none;">
+				<input type="text" name="code" style="width:50%" class="form-control" id="code_field" placeholder="Enter code"/>
+				<input type="button" value="Confirm" id="confirm_button" class="btn btn-success" onclick="confirmCode();"/>
+				<div id="ppw"></div>
+				</div>
+                <div id="tell" class="ss"></div>
+				<input type="password" class="form-control" placeholder="Password" name="pass" id="pass" onkeyup="passRs();">
+                <div id="bass" class="ss"></div>
+                <input type="password" class="form-control" placeholder="Confirm Password" name="cpass" onkeyup="checkPass();" id="cpass">
+                <div id="b" class="ss"></div>
+                <div class="checkbox" style="display: inline-block;">
+          <label onmouseout="terms();">
+            <input type="checkbox" id="cond" name="terms" style="margin-top:-14px;" > You accept to all <a href="terms.php">Terms and Conditions</a>.
+          </label>
+        </div>
+      <button type="submit" id="submit_button" class="btn btn-success" name="Submit">Register</button>
           
-
+			</form>
 
                 
         </div>
@@ -141,18 +169,17 @@
             
             <div class="col-lg-3 col-sm-3">
                     <h4>Follow us</h4>
-                    <a href="#"><img src="images/facebook.png" alt="facebook"></a>
-                    <a href="#"><img src="images/twitter.png" alt="twitter"></a>
-                    <a href="#"><img src="images/linkedin.png" alt="linkedin"></a>
-                    <a href="#"><img src="images/instagram.png" alt="instagram"></a>
+                    <a href="https://www.facebook.com/YouRoom-110992356987909/"><img src="images/facebook.png" alt="facebook"></a>
+                    <a href="https://twitter.com/YouRoom5?s=08"><img src="images/twitter.png" alt="twitter"></a>
+                    <a href="https://www.instagram.com/youroom5?r=nametag"><img src="images/instagram.png" alt="instagram"></a>
             </div>
 
              <div class="col-lg-3 col-sm-3">
                     <h4>Contact us</h4>
-                    <p><b>YouHome</b><br>
-<span class="glyphicon glyphicon-map-marker"></span> *Address* <br>
-<span class="glyphicon glyphicon-envelope"></span>*mail*<br>
-<span class="glyphicon glyphicon-earphone"></span> *contact*</p>
+                    <p><b>YouRoom</b><br>
+<span class="glyphicon glyphicon-map-marker"></span> Haripur, Selaqui, Dehradun <br>
+<span class="glyphicon glyphicon-envelope"></span> support@youroom1.in<br>
+<span class="glyphicon glyphicon-earphone"></span> 919557904724</p>
             </div>
         </div>
 <p class="copyright">Copyright 2019. All rights reserved.	</p>
