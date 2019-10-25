@@ -34,7 +34,7 @@ table{background-color: #fff;}
 
 .btn{border-radius: 5px; font-family: din; outline: none;}
 .btn-success{ background: #b70f0f;border:1px solid #b70f0f;padding:6px 20px; font-size:16px; }
-.btn-primary{ background: #64a30a;border:none;width: 100%;border-radius: 20px;}
+.btn-primary{ background: #b70f0f;border:none;width: 100%;border-radius: 20px;}
 .btn-info{background: #333;border:4px solid #ddd;padding: 3px 20px; font-size:20px; border-radius: 20px;  }
 .btn-danger{background: #333;border:4px solid #ddd;padding: 9px 40px; font-size:30px; border-radius: 25px;  }
 
@@ -58,7 +58,7 @@ table{background-color: #fff;}
 .properties-listing div.properties{padding: 10px; background-color: #fff;text-align: center; margin-bottom: 20px;}
 .owl-wrapper-outer div.properties{margin: 0 5px;}
 .properties-listing div.properties .image-holder{position: relative;}
-.properties-listing div.properties .status{position: absolute;bottom: 0;z-index: 100;display: block;width: 100%;color: #fff;padding:0 3px;text-align: right; font-size: 12px;}
+.properties-listing div.properties .status{position: absolute;bottom: 0;z-index: 100;display: block;width: 100%;color: #fff;padding:0 6px;text-align: center; font-size: 12px;}
 .properties-listing div.properties p{margin-bottom: 10px; font-size: 14px;border-top: 1px solid #ddd;border-bottom: 1px solid #ddd;padding: 5px 0;font-family: din;}
 
 .listing-detail{margin-bottom: 30px;}
@@ -66,7 +66,7 @@ table{background-color: #fff;}
 .listing-detail span:hover{background: #b70f0f;}
 
 
-.status.sold{background:rgba(104,167,13,0.8);}
+.status.sold{background:rgba(104,167,13,0.8); height:20px; text-align:center;}
 .status.new{background:rgba(190,7,46,0.8);}
 
 .recommended{position: relative;}
@@ -139,5 +139,58 @@ h2{font-size: 25px;}
 .searchbar button{margin-bottom: 40px;}
 .footer .col-sm-3{margin-bottom: 30px;}
 .agents img{ margin-bottom: 20px;}
+}
+
+.squareItem{margin-top: 30px; position: relative;}
+.squareInnerContainer{
+    position: relative;
+    padding: 50px 15px 35px;
+    text-align: center;
+    border: 2px solid #444;
+    border-top: none;
+}
+.squareInnerContainer:before,
+.squareInnerContainer:after {
+	content: '';
+	position: absolute;
+	top: 0px;
+	width: 30%;
+	border-bottom: 2px solid #444;
+}
+.squareInnerContainer:before {
+	right: 0px;
+}
+.squareInnerContainer:after {
+	left: 0px
+}
+.squareContent h2 {
+	font-size: 56px;
+	margin-bottom: 10px;
+	font-weight: 400;
+	color: #e74c3c;
+}
+.squareContent h3 {
+	font-size: 13px;
+	font-weight: 600;
+	margin: 0;
+}
+.squareIcon {
+	position: absolute;
+    left: 50%;
+    top: -20px;
+    width: 40%;
+    height: 60px;
+    font-size: 45px;
+    margin-left: -20%;
+    color: #444;
+}
+
+.containerNew {
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
