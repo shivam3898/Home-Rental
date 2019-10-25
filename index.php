@@ -3,12 +3,17 @@
 <title>YouRoom </title>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
  	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/style.css"/>
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  
+	
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="countUp.js"></script>
+  <script src="countUp-jquery.js"></script>
 	<script src="assets/bootstrap/js/bootstrap.js"></script>
   <script src="assets/script.js"></script>
+
 
 
 
@@ -204,6 +209,78 @@
     </div>
 
 
+
+
+<div id="stats" class="statsSection section">
+
+		<div class="containerNew">
+
+			<div class="row">
+
+				
+				<div class="col-md-3 col-sm-6">
+					<div class="squareItem">
+						<div class="squareInnerContainer">
+							<div class="squareIcon">
+								<i class="fa fa-clock"></i>
+							</div>
+							<div class="squareContent">
+                                <h2 class="counter">1</h2>
+                                <h3>Month Experience</h3>
+                            </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="squareItem">
+						<div class="squareInnerContainer">
+							<div class="squareIcon">
+								<i class="fas fa-address-book"></i>
+							</div>
+							<div class="squareContent">
+                                <h2 class="counter">50</h2>
+                                <h3>Clients</h3>
+                            </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="squareItem">
+						<div class="squareInnerContainer">
+							<div class="squareIcon">
+								<i class="fas fa-briefcase"></i>
+							</div>
+							<div class="squareContent">
+                                <h2 class="counter">4</h2>
+                                <h3>Employees</h3>
+                            </div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="squareItem">
+						<div class="squareInnerContainer">
+							<div class="squareIcon">
+								<i class="fas fa-home"></i>
+							</div>
+							<div class="squareContent">
+                                <h2 class="counter">9999</h2>
+                                <h3>Houses Sold</h3>
+                            </div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+	</div>
+
             
 
 
@@ -287,5 +364,6 @@
   </div>
 </div>
 <!-- /.modal -->
+
 </body>
 </html>
