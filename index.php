@@ -67,6 +67,8 @@
   top: 10%;
   font-size: 2.9vmax;
 }
+
+
 </style>
 </head>
 <?php
@@ -105,7 +107,8 @@
 	}
 ?>
 <body>
-
+ <div id="load"></div>
+    <div id="contents">
 
 <div class="container">
 
@@ -222,7 +225,7 @@
 					<div class="squareItem">
 						<div class="squareInnerContainer">
 							<div class="squareIcon">
-								<i class="fa fa-clock"></i>
+								<i class="fas fa-map-marker-alt"></i>
 							</div>
 							<div class="squareContent">
                                 <h2 class="counter">1</h2>
@@ -364,6 +367,9 @@
   </div>
 </div>
 <!-- /.modal -->
+<script>
 
+</script>
+</div>
 </body>
 </html>

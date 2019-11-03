@@ -91,31 +91,57 @@
     <h3>Search rooms around</h3>
     <div class="searchbar">
       <div class="row">
-        <div class="col-lg-6 col-sm-6">
-          <input type="text" class="form-control" placeholder="Search of Properties">
+        <div class="col-lg-12 col-sm-11">
           <div class="row">
             <div class="col-lg-3 col-sm-3 ">
+              <input type="text" class="form-control" placeholder="Search for Properties">
+            </div>
+            <div class="col-lg-2 col-sm-4">
               <select class="form-control">
-                <option>Buy</option>
-                <option>Rent</option>
-                <option>Sale</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+              <!--  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+				<option value="Andhra Pradesh">Andhra Pradesh</option>
+				<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+				<option value="Assam">Assam</option>
+				<option value="Bihar">Bihar</option>
+				<option value="Chandigarh">Chandigarh</option>
+				<option value="Chhattisgarh">Chhattisgarh</option>
+				<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+				<option value="Daman and Diu">Daman and Diu</option>
+				<option value="Delhi">Delhi</option>
+				<option value="Goa">Goa</option>
+				<option value="Gujarat">Gujarat</option>
+				<option value="Haryana">Haryana</option>
+				<option value="Himachal Pradesh">Himachal Pradesh</option>
+				<option value="Jammu and Kashmir">Jammu and Kashmir</option>
+				<option value="Jharkhand">Jharkhand</option>
+				<option value="Karnataka">Karnataka</option>
+				<option value="Kerala">Kerala</option>
+				<option value="Lakshadweep">Lakshadweep</option>
+				<option value="Madhya Pradesh">Madhya Pradesh</option>
+				<option value="Maharashtra">Maharashtra</option>
+				<option value="Manipur">Manipur</option>
+				<option value="Meghalaya">Meghalaya</option>
+				<option value="Mizoram">Mizoram</option>
+				<option value="Nagaland">Nagaland</option>
+				<option value="Orissa">Orissa</option>
+				<option value="Pondicherry">Pondicherry</option>
+				<option value="Punjab">Punjab</option>
+				<option value="Rajasthan">Rajasthan</option>
+				<option value="Sikkim">Sikkim</option>
+				<option value="Tamil Nadu">Tamil Nadu</option>
+				<option value="Tripura">Tripura</option>
+				<option value="Uttaranchal">Uttaranchal</option>
+				<option value="Uttar Pradesh">Uttar Pradesh</option>
+				<option value="West Bengal">West Bengal</option> -->
               </select>
             </div>
-            <div class="col-lg-3 col-sm-4">
-              <select class="form-control">
-                <option>Price</option>
-                <option>$150,000 - $200,000</option>
-                <option>$200,000 - $250,000</option>
-                <option>$250,000 - $300,000</option>
-                <option>$300,000 - above</option>
-              </select>
-            </div>
-            <div class="col-lg-3 col-sm-4">
+            <div class="col-lg-2 col-sm-4">
             <select class="form-control">
-                <option>Property</option>
-                <option>Apartment</option>
-                <option>Building</option>
-                <option>Office Space</option>
+                <option>City</option>
+                <option></option>
+                <option></option>
+                <option></option>
               </select>
               </div>
               <div class="col-lg-3 col-sm-4">

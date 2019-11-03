@@ -127,7 +127,7 @@
                 <input type="password" class="form-control" placeholder="Confirm Password" name="cpass" onkeyup="checkPass();" id="cpass">
                 <div id="b" class="ss"></div>
                 <div class="checkbox" style="display: inline-block;">
-          <label onmouseout="terms();">
+          <label onclick="terms();">
             <input type="checkbox" id="cond" name="terms" style="margin-top:-14px;" > You accept to all <a href="terms.php">Terms and Conditions</a>.
           </label>
         </div>

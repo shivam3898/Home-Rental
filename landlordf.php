@@ -18,7 +18,7 @@
 <title>YouRoom </title>
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
- 	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css" />
+ 	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.css"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/style.css"/>
   
@@ -191,13 +191,6 @@ input:checked + .slider:before {
     .gallery_product{
         margin-bottom: 30px;
     }
-	
-.center {
-	height: 40%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 </style>
 </head>
 
@@ -233,8 +226,8 @@ input:checked + .slider:before {
             <!-- Nav Starts -->
             <div class="navbar-collapse  collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" href="" data-target="#addModal"><span class="glyphicon glyphicon-plus"></span>&nbsp Add Room</a></li>
-                <li><a href=""><span class="glyphicon glyphicon-user"></span>&nbsp Account</a></li>         
+                <li><a href="" data-toggle="modal" data-target="#addModal"><span class="glyphicon glyphicon-plus"></span>&nbsp Add Room</a></li>
+                <li><a href="account.php"><span class="glyphicon glyphicon-user"></span>&nbsp Account</a></li>         
                 <li><a href="logout.php"><span class="glyphicon glyphicon-off"></span>&nbsp Log Out</a></li>
               </ul>
             </div>
@@ -282,7 +275,6 @@ input:checked + .slider:before {
     <?php
         $room_query = "SELECT * FROM `room_details` WHERE `owner_id` = '$id'";
         if($room_query_run = mysqli_query($connection,$room_query)){
-            if(mysqli_num_rows($room_query_run)!=0){
             while($row = mysqli_fetch_assoc($room_query_run)){
                 $room_id = $row['id'];
                 $house_name = $row['house_name'];
@@ -502,12 +494,8 @@ input:checked + .slider:before {
         }
     else{
         ?>
-            <div class="center">
-			  <!-- <h3>No Room Added</h3><br> -->
-			  <button data-toggle="modal" href="" data-target="#addModal" class="btn btn-success" style=""><i class="glyphicon glyphicon-plus"></i> Add Room</button>
-			</div>
+            <h2>No room added.</h2>
         <?php
-        }
     }
     ?>
     <!--ONE PROPERTY-->
